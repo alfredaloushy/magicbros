@@ -1,5 +1,7 @@
 # Wild Magic Academy
 
+Repository: **magicbros**.
+
 A 2D magic arena brawler for friends, built with Rust and Bevy. Android and iOS
 are the intended targets; the current prototype runs on desktop.
 
