@@ -1,0 +1,33 @@
+**/target/
+.cache/
+**/*.ppm
+
+# Local credentials and managed environment configuration.
+/.aws/
+/.codex/
+/.agents/
+.env
+.env.*
+!.env.example
+!.env.template
+*.pem
+*.key
+*.p12
+*.pfx
+*.keystore
+*.jks
+
+# Regenerable document review output; retain the final documents and source art.
+/documents/.build/page-*.png
+/documents/.build/visual-review-*.png
+/documents/.build/pdf-contact-sheet.png
+/documents/.build/*original.pdf
+/documents/.build/expanded-final.pdf
+/documents/.build/visual-atlas.pdf
+
+# Editor and OS temporary files.
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

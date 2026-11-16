@@ -1,0 +1,14 @@
+* text=auto
+*.rs text eol=lf
+*.gd text eol=lf
+*.tscn text eol=lf
+*.godot text eol=lf
+*.toml text eol=lf
+*.lock text eol=lf
+*.md text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.png binary
+*.pdf binary
+*.docx binary

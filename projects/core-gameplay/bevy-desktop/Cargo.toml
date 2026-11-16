@@ -1,0 +1,18 @@
+[package]
+name = "wild-magic-bevy"
+version = "0.1.0"
+edition = "2024"
+
+# Kept outside the offline workspace so missing renderer crates do not block tests.
+[workspace]
+
+[dependencies]
+wild-magic-core = { path = ".." }
+glam = "=0.30.10"
+# Load Wayland at runtime, matching the offline runner and avoiding a build-time
+# pkg-config dependency on distributions that keep system development files separate.
+winit = { version = "=0.30.13", default-features = false, features = ["wayland-dlopen"] }
+bevy = { version = "=0.18.1", default-features = false, features = [
+    "std", "async_executor", "bevy_asset", "bevy_log", "bevy_winit",
+    "2d_bevy_render", "multi_threaded", "x11", "wayland"
+] }
