@@ -72,12 +72,11 @@ background, distant architecture, playable platforms, foreground decoration and
 collision guides separate. Make repeatable terrain into a tileset instead of
 painting every platform into one image.
 
-Draw map mock-ups in the game's side-on 2D view. ANNO: Mutationem's depth and
-lighting can inform the composition; its 3D exploration is not part of this
-prototype. A map PNG provides appearance, not playable collision, spawns or pit
+Draw map mock-ups in the game's side-on 2D view, following the original project
+concept sheet. The user superseded the earlier ANNO: Mutationem direction. A map PNG provides appearance, not playable collision, spawns or pit
 rules. Those need separate level data and core validation when implemented.
 
-## Concept 01 review
+## Earlier concept 01 review (superseded)
 
 The visible sprite was inspected enlarged and as a flat silhouette. The face
 and spell clusters were corrected during review. Aseprite validation passes

@@ -1,6 +1,7 @@
 # First wizard concept
 
-Status: draft for visual review, not an approved character or animation set.
+Status: superseded. The user requested a redraw solely from the original project
+concept art. See [Red mage](RED-MAGE.md) for the current design.
 
 The user directs the design and Codex draws in the live Aseprite window. The
 first requested reference is **ANNO: Mutationem**. Borrow its readable human

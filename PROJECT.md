@@ -34,7 +34,7 @@ been removed. Art exploration proceeds alongside the pending network gate.
 | LAN verification | Real loopback combat tests pass; host/client GPU screenshots inspected |
 | Physical network/device gate | Two computers on Wi-Fi and Android/iOS playtests still pending |
 | Aseprite art workstream | Live editor connected; first wizard concept, rigged template and PNG/JSON handoff prepared |
-| Character style | ANNO: Mutationem reference requested; original apprentice mock-up awaiting user review |
+| Character style | Original concept sheet only; red-and-gold mage drawn in Aseprite, awaiting user review |
 | Animation and map artwork | Pending first concept review and in-motion scale test |
 
 ## Development projects
@@ -86,7 +86,7 @@ The forward plan is in [ROADMAP.md](ROADMAP.md), from real Wi-Fi validation thro
 mobile controls, a polished combat slice, complete matches, expanded combat and
 release hardening. Each milestone has an explicit pass condition.
 
-Review the open Aseprite wizard mock-up and [concept brief](projects/art-animation/CONCEPT-01.md).
+Review the open Aseprite red mage and [reference brief](projects/art-animation/RED-MAGE.md).
 Revise the design with the user, then build idle/run animation and a small
 courtyard sample using the [art workflow](projects/art-animation/ASEPRITE-WORKFLOW.md).
 The current character is a static design study; it is not yet integrated into Bevy.

@@ -6,10 +6,15 @@ prepared for user review. Animation, map artwork and engine integration are pend
 ## Current work
 
 The user supplies art direction and Codex draws in the live Aseprite window.
-The first requested style reference is ANNO: Mutationem. Start with one original
-apprentice mock-up, settle the design, then animate it and test a courtyard sample.
+The current direction is to follow our original concept art exclusively. The red
+mage is drawn from the lower-left character lineup in
+[the concept sheet](../../documents/.build/concept-art.png). The earlier ANNO-inspired
+apprentice is superseded and retained only as an earlier study.
 
-- [Concept brief](CONCEPT-01.md): design intent, reference and review gate.
+- [Red mage brief](RED-MAGE.md): current reference, source, exports and review.
+- [Red mage source](source/characters/red-mage.aseprite) and
+  [preview](exports/characters/red-mage-preview.png).
+- [Earlier concept brief](CONCEPT-01.md): superseded study.
 - [Editable wizard concept](source/characters/wizard-concept-01.aseprite).
 - [Blank character template](source/characters/wizard-template.aseprite).
 - [Transparent sprite](exports/characters/wizard-concept-01.png),
