@@ -12,9 +12,16 @@ recreation. The generated [reference PNG](references/red-mage-reference-v1.png)
 uses the original concept sheet as its sole visual input, emphasizing a
 right-facing profile and consistent compact proportions. Created with built-in
 imagegen; the [full prompt](references/red-mage-reference-v1-prompt.txt) is retained.
-This is the new recreation reference; the existing Aseprite source below has
-not yet been rebuilt from it. The generated PNG is a reference image, not a
-validated native-resolution animation frame.
+An [exact Aseprite copy](source/characters/red-mage-reference-v1.aseprite) is now
+available and open in the editor. The PNG was opened directly and saved as
+Aseprite source, preserving its original 1293 × 1217 resolution, RGB colours
+and alpha on one editable layer named `Original reference pixels`. A PNG
+export from this document was decoded and compared against the original:
+zero RGBA pixel differences. No resizing, palette reduction or redrawing was
+applied. This is a faithful full-resolution image copy; limb separation,
+native gameplay resolution and animation remain future work.
+
+The smaller Aseprite source below is the earlier hand-drawn interpretation.
 
 The sprite follows the oversized floppy red hat with a gold star and brim,
 brown fringe, small pale face, short red cape with gold edging, dark tunic,
