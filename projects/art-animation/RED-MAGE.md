@@ -45,6 +45,34 @@ was imported temporarily for comparison and removed before saving exports.
 
 ## Review and limits
 
+### Aseprite playback of the generated idle sheet
+
+The user requested trying the sprite sheet as an animation in Aseprite.
+The live editor imported the four equal panels of
+`exports/characters/red-mage-idle-sheet-v2.png` without scaling, repositioning
+or palette conversion. The saved [editable source](source/characters/red-mage-idle-sheet-v2.aseprite)
+has four 627 × 627 RGB frames on `Idle artwork`, an infinitely looping `idle`
+tag and a shared feet pivot `(345, 582)`. Timings are 400/200/400/200ms, totaling
+1.2 seconds. The existing generated poses provide the motion; no new poses or
+body-part rig were created. Live playback was started in the user's window,
+and three successive state reads showed frames 1, 2 and 3 advancing.
+
+Validation found 5,106 isolated pixels with alpha exactly 1/255 in the input.
+Those pixels were cleared through four undoable edits in the live document.
+Independent RGBA comparisons verified that every other pixel is identical
+to its corresponding source-sheet panel, including the visible artwork.
+All four foot baselines remain at `y=581` using alpha ≥128. The source PNG is
+unchanged. Final live validation reports zero errors, nine warnings and one
+note: the generated image retains off-palette colors, soft alpha and uneven
+outline colors. These are retained to preserve the supplied artwork; this
+playback test is not a completed native-pixel cleanup or Bevy integration.
+
+Saved exports: [GIF](exports/characters/red-mage-idle-aseprite-v2.gif),
+[2508 × 627 horizontal PNG atlas](exports/characters/red-mage-idle-aseprite-v2.png),
+and [JSON](exports/characters/red-mage-idle-aseprite-v2.json). Atlas rectangles,
+frame/tag/pivot metadata, the editable file header and all four GIF frame
+durations were independently checked against the live document.
+
 ### Single magenta source for manual animation
 
 The user's next prompt requested one complete, centered, front-facing subject

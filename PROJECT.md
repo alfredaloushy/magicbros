@@ -2,7 +2,7 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: first Aseprite character concept
+## Current milestone: first red mage idle animation in Aseprite
 
 Two-computer Wi-Fi testing is paused at the user's request until a second
 computer is available. The host is stopped and its temporary firewall rule has
@@ -35,7 +35,8 @@ been removed. Art exploration proceeds alongside the pending network gate.
 | Physical network/device gate | Two computers on Wi-Fi and Android/iOS playtests still pending |
 | Aseprite art workstream | Live editor connected; first wizard concept, rigged template and PNG/JSON handoff prepared |
 | Character style | Original concept sheet only; red mage revised to a right-facing profile with realigned body proportions; awaiting user review |
-| Animation and map artwork | Pending first concept review and in-motion scale test |
+| Idle animation | Generated side-facing sheet imported into live Aseprite: four 627 × 627 frames, 1.2s loop; source and GIF/PNG/JSON saved; playback verified |
+| Native-pixel cleanup and map artwork | Pending visual review and in-motion scale test |
 
 ## Development projects
 
@@ -86,10 +87,14 @@ The forward plan is in [ROADMAP.md](ROADMAP.md), from real Wi-Fi validation thro
 mobile controls, a polished combat slice, complete matches, expanded combat and
 release hardening. Each milestone has an explicit pass condition.
 
-Review the open Aseprite red mage and [reference brief](projects/art-animation/RED-MAGE.md).
-Revise the design with the user, then build idle/run animation and a small
-courtyard sample using the [art workflow](projects/art-animation/ASEPRITE-WORKFLOW.md).
-The current character is a static design study; it is not yet integrated into Bevy.
+Review the looping red mage idle in the open Aseprite window and the
+[reference brief](projects/art-animation/RED-MAGE.md). The generated side-facing
+sheet is now a saved four-frame Aseprite animation, with a GIF preview and
+PNG/JSON atlas. Refine motion and native pixel quality with the user, then
+continue running and a small courtyard sample using the
+[art workflow](projects/art-animation/ASEPRITE-WORKFLOW.md). The art is not yet
+integrated into Bevy. The front-facing magenta image remains a separate source
+for the user's manual external-video workflow.
 
 To host, run `projects/multiplayer/run.sh host`; join with
 `projects/multiplayer/run.sh join HOST_IP`. Use 127.0.0.1 for two windows locally.

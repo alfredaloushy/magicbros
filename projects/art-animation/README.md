@@ -1,9 +1,18 @@
 # Wild Magic Academy — art and animation project
 
-Status: active. A first character concept and an editable Aseprite template are
-prepared for user review. Animation, map artwork and engine integration are pending.
+Status: active. The generated red mage idle sheet is imported as a four-frame
+Aseprite animation and previewed in the live editor. Style approval, native
+pixel cleanup, map artwork and engine integration remain pending.
 
 ## Current work
+
+The [editable idle animation](source/characters/red-mage-idle-sheet-v2.aseprite)
+plays in Aseprite as a 1.2-second loop, with four 627 × 627 frames and timings
+of 400/200/400/200ms. [GIF preview](exports/characters/red-mage-idle-aseprite-v2.gif),
+[horizontal atlas](exports/characters/red-mage-idle-aseprite-v2.png) and
+[frame metadata](exports/characters/red-mage-idle-aseprite-v2.json) are saved.
+This uses the earlier side-facing sheet; the single magenta image below is a
+separate source for the manual external-video workflow.
 
 For the manual Pixelate workflow: [single front-facing red mage source](references/red-mage-idle-source-magenta-v1.png),
 fully opaque with an exact `#FF00FF` background. The square source is styled as
@@ -37,8 +46,9 @@ apprentice is superseded and retained only as an earlier study.
 - [Aseprite workflow](ASEPRITE-WORKFLOW.md): source/export conventions and the
   planned character, animation and map handoff to Bevy.
 
-This is one static 64 × 64 design study. It has not been approved as the final
-character style, animated or imported into the current renderer.
+The earlier 64 × 64 character files are static design studies. The new idle
+animation retains the generated sheet's reference resolution and soft alpha;
+it has not been approved as the final character style or imported into Bevy.
 
 ## Brief
 
