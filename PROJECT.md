@@ -74,6 +74,10 @@ The existing Godot project remains available as a reference.
 
 ## Next concrete action
 
+The forward plan is in [ROADMAP.md](ROADMAP.md), from real Wi-Fi validation through
+mobile controls, a polished combat slice, complete matches, expanded combat and
+release hardening. Each milestone has an explicit pass condition.
+
 Try the open host/client windows: click one to control that player. A/D moves,
 Space jumps, Shift dashes, mouse + click aims/casts, 1/2 switches. LAN gameplay
 continues while unfocused. Leaving either window ends the session.

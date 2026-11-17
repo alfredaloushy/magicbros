@@ -60,6 +60,7 @@ Bevy windows are verified; physical Wi-Fi/device playtesting remains pending.
 | `documents/` | Design documents, source illustrations and generation scripts |
 | `wild-magic-academy/` | Earlier Godot experiment, preserved for reference |
 
+[ROADMAP.md](ROADMAP.md) defines the upcoming milestones and pass conditions.
 [PROJECT.md](PROJECT.md) tracks progress and [projects/README.md](projects/README.md)
 describes ownership and handoffs. The design draft predates the Bevy selection;
 later confirmed decisions and implemented behavior are recorded in project notes.
