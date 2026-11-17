@@ -7,6 +7,15 @@ lower-left lineup (source region x=55, y=614, width=146, height=174).
 
 ## Design and files
 
+The user requested an imagegen reference to guide a subsequent faithful Aseprite
+recreation. The generated [reference PNG](references/red-mage-reference-v1.png)
+uses the original concept sheet as its sole visual input, emphasizing a
+right-facing profile and consistent compact proportions. Created with built-in
+imagegen; the [full prompt](references/red-mage-reference-v1-prompt.txt) is retained.
+This is the new recreation reference; the existing Aseprite source below has
+not yet been rebuilt from it. The generated PNG is a reference image, not a
+validated native-resolution animation frame.
+
 The sprite follows the oversized floppy red hat with a gold star and brim,
 brown fringe, small pale face, short red cape with gold edging, dark tunic,
 square gold belt buckle and brown boots. It uses the reference's compact

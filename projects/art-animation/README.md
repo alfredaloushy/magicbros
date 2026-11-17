@@ -12,6 +12,8 @@ mage is drawn from the lower-left character lineup in
 apprentice is superseded and retained only as an earlier study.
 
 - [Red mage brief](RED-MAGE.md): current reference, source, exports and review.
+- [Generated red mage reference](references/red-mage-reference-v1.png):
+  right-facing character reference for the next Aseprite recreation.
 - [Red mage source](source/characters/red-mage.aseprite) and
   [preview](exports/characters/red-mage-preview.png).
 - [Earlier concept brief](CONCEPT-01.md): superseded study.
