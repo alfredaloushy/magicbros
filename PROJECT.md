@@ -2,7 +2,7 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: first red mage idle animation in Aseprite
+## Current milestone: six-frame red mage idle with cloth follow-through
 
 Two-computer Wi-Fi testing is paused at the user's request until a second
 computer is available. The host is stopped and its temporary firewall rule has
@@ -35,7 +35,7 @@ been removed. Art exploration proceeds alongside the pending network gate.
 | Physical network/device gate | Two computers on Wi-Fi and Android/iOS playtests still pending |
 | Aseprite art workstream | Live editor connected; first wizard concept, rigged template and PNG/JSON handoff prepared |
 | Character style | Original concept sheet only; red mage revised to a right-facing profile with realigned body proportions; awaiting user review |
-| Idle animation | Generated side-facing sheet imported into live Aseprite: four 627 × 627 frames, 1.2s loop; source and GIF/PNG/JSON saved; playback verified |
+| Idle animation | Six-frame v3 idle: cape/hat follow-through, aligned 512 × 512 frames, identical planted boots, 1.3s loop; Aseprite source and GIF/PNG/JSON saved; earlier four-frame version retained |
 | Native-pixel cleanup and map artwork | Pending visual review and in-motion scale test |
 
 ## Development projects
@@ -89,8 +89,9 @@ release hardening. Each milestone has an explicit pass condition.
 
 Review the looping red mage idle in the open Aseprite window and the
 [reference brief](projects/art-animation/RED-MAGE.md). The generated side-facing
-sheet is now a saved four-frame Aseprite animation, with a GIF preview and
-PNG/JSON atlas. Refine motion and native pixel quality with the user, then
+sheet is now a saved six-frame Aseprite animation with cape/hat follow-through,
+fixed foot alignment, a GIF preview and a 3 × 2 PNG/JSON atlas. Refine motion
+and native pixel quality with the user, then
 continue running and a small courtyard sample using the
 [art workflow](projects/art-animation/ASEPRITE-WORKFLOW.md). The art is not yet
 integrated into Bevy. The front-facing magenta image remains a separate source

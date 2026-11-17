@@ -1,0 +1,27 @@
+Use case: stylized-concept.
+Asset: a detailed SIX-FRAME pixel-art idle-animation sprite sheet for the side-scrolling game Wild Magic Academy.
+
+REFERENCES:
+Image 1 is the ORIGINAL RED MAGE and the sole authority for character identity, proportions, silhouette, costume and colors.
+Image 2 is the earlier four-frame idle sheet. Preserve its right-facing presentation and planted-foot consistency, but improve the quality of its six-phase motion and cloth follow-through. Do not reproduce four frames.
+
+OUTPUT AND GRID:
+Create a LANDSCAPE 3:2 canvas, ideally 1536x1024 pixels, containing EXACTLY SIX characters in a perfectly regular THREE-COLUMN by TWO-ROW invisible grid. Six equal square cells, no cell borders. Reading order is frames 1,2,3 across the top, then 4,5,6 across the bottom. Transparent RGBA background with genuinely empty alpha outside the sprites. NO text, labels, numbers, grid lines, shadows, floor, scenery, effects or extra objects.
+Each cell uses exactly the same camera, character scale and frame anchor. At the requested 1536x1024 size, each cell is 512x512. Give the character generous empty margin, with the hat top near local y=64 and BOTH boot soles at local y=456. The complete character, including moving cape and floppy hat tip, must stay between x=64 and x=448. The midpoint between the planted boots stays at local x=280 in EVERY cell. This offset centers the entire asymmetric silhouette visually. The boot positions and boot shapes are IDENTICAL in all six frames. Never independently crop or recenter a pose.
+
+PRESERVE THIS EXACT MAGE:
+Compact, short young red mage; oversized floppy crimson hat, drooping tip toward the left, the same prominent gold hat star and gold-edged brim; same hat dimensions and tilt; brown fringe; one visible dark eye and the same small pale right-facing face; red shoulder collar and small circular gold clasp; red cape draped behind to the left with the same gold edging and ONE star near its hem; charcoal tunic and trousers, brown belt with square gold buckle, brown boots. Arms relaxed at the sides. Preserve precisely the source's accessory count. NO staff, weapon, gloves, extra stars, badges or new costume pieces.
+Show more deliberate detail in the existing cape folds, hat creases, gold edging, fringe and boot highlights, with controlled pixel shading. Keep these details stable across frames. Crisp square pixel clusters, clean hard edges and one consistent pixel density/palette throughout. Do not use blur, painterly texture, smooth gradients, random dither or grain.
+
+ANIMATION AND PHYSICS:
+A calm breathing idle, NOT walking and NOT bouncing. Six genuinely distinct successive poses forming one continuous loop. Torso/chest motion is tiny: at most 2 logical art pixels vertically. Feet, ankles, pelvis and belt remain anchored. Head keeps a stable right-facing profile and unchanged expression. Preserve joint connections, limb lengths, body volume, eye pixels and costume geometry. The cape is physically attached at the same shoulder and collar; hat brim stays seated on the head. Only the loose cape hem and floppy hat tip have visibly greater travel. Cloth follows the body with a one-frame delay and a small overshoot. Use coordinated, flowing deformation of cloth folds; do not translate or rotate the whole cape/hat as rigid stickers.
+
+SIX POSES, IN ORDER:
+1. Neutral low/rest pose: cape hangs left with a soft S-curve, hat tip at its natural droop.
+2. Early inhale: chest and shoulders rise 1 logical pixel; hat crown follows the head, but floppy tip and cape hem still lag near pose 1.
+3. High inhale: torso reaches 2 logical pixels above rest; cape hem gently travels farther left and lifts 2 logical pixels, folds open slightly; the floppy hat tip follows upward and outward without stretching.
+4. Early exhale: torso starts down 1 logical pixel; cape hem reaches its delayed outward/upward maximum (about 3–4 logical pixels of loose-cloth travel); hat tip reaches its delayed high point, then begins settling. Boots, belt and pelvis still unchanged.
+5. Low exhale: torso returns to rest; cape hem flows gently inward/downward past its neutral position by 1–2 logical pixels, and the hat tip dips slightly below its neutral position. Keep all cloth attached.
+6. Settle toward pose 1: torso stays at rest, cape and hat tip ease back toward the neutral S-curve and droop. The last-to-first transition must be as small and smooth as every other transition.
+
+PRIORITY: accurate same-character identity and equal cell/feet alignment FIRST; readable subtle cape and hat follow-through SECOND; fine stable pixel detail THIRD. Do not change the face, body size, hat size, star shapes, belt buckle or feet between poses. Every cell must contain exactly one complete mage; six cells total. Deliver only the sprite sheet.

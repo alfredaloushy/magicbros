@@ -45,6 +45,44 @@ was imported temporarily for comparison and removed before saving exports.
 
 ## Review and limits
 
+### Six-frame idle with cape and hat follow-through (v3)
+
+The user accepted the reference approach and requested a more detailed
+six-frame idle with flowing cape and hat motion. Built-in imagegen used the
+original red mage and prior side-facing sheet as references; the
+[full prompt](references/red-mage-idle-sheet-v3-prompt.txt) and
+[untouched generated sheet](references/red-mage-idle-sheet-v3-generated.png)
+are retained. The six poses progress through rest, inhale, high inhale,
+delayed cloth overshoot, exhale and settling. This adds motion in the existing
+costume rather than new props or effects.
+
+The raw output had horizontal registration drift across its three columns
+and a one-pixel baseline difference between rows. In the live Aseprite editor,
+the six 512 × 512 panels were shifted by `(-36,0), (-4,0), (28,0), (-36,-1),
+(-4,-1), (28,-1)` without scaling. The boots and lower cuffs in rectangle
+`(190,424,180,56)` were copied from the first registered frame to keep the
+planted feet identical. 6,246 isolated source pixels with alpha exactly 1/255
+were cleared in undoable live edits. The soft alpha on the generated artwork
+remains. Color in fully transparent source pixels can look like a red haze in
+viewers that ignore alpha; sampled surrounding pixels have zero alpha, and
+the Aseprite filmstrip shows the actual transparent background.
+
+The [editable animation](source/characters/red-mage-idle-sheet-v3.aseprite)
+has an infinitely looping `idle` tag, timings of 350/150/200/250/200/150ms
+(1.3 seconds), and shared feet pivot `(281,473)`. The
+[final sheet](exports/characters/red-mage-idle-sheet-v3.png) is a 1536 × 1024
+3 × 2 grid, in reading order, with [JSON metadata](exports/characters/red-mage-idle-sheet-v3.json)
+and a [GIF preview](exports/characters/red-mage-idle-sheet-v3.gif).
+
+Checked: six distinct frames, pixel-identical planted boots, all six sole
+baselines at `y=472`, complete silhouettes inside every cell, final grid RGBA
+matching the live animation export, and matching Aseprite/GIF durations.
+Live validation reports zero errors, eight warnings and seven notes; remaining
+findings concern the generated palette, soft alpha, outline colors and a small
+isolated-pixel warning. The filmstrip was inspected, and successive live
+frame reads confirmed playback advancing through frames 6, 1 and 2.
+User visual review and Bevy integration remain pending.
+
 ### Aseprite playback of the generated idle sheet
 
 The user requested trying the sprite sheet as an animation in Aseprite.

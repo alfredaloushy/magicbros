@@ -1,12 +1,21 @@
 # Wild Magic Academy — art and animation project
 
-Status: active. The generated red mage idle sheet is imported as a four-frame
+Status: active. The generated red mage idle sheet is imported as a six-frame
 Aseprite animation and previewed in the live editor. Style approval, native
 pixel cleanup, map artwork and engine integration remain pending.
 
 ## Current work
 
-The [editable idle animation](source/characters/red-mage-idle-sheet-v2.aseprite)
+Current: [six-frame idle sprite sheet](exports/characters/red-mage-idle-sheet-v3.png),
+a 1536 × 1024 transparent PNG with six equal 512 × 512 cells, clearer cape
+flow and delayed hat-tip movement. The [editable Aseprite animation](source/characters/red-mage-idle-sheet-v3.aseprite)
+plays a 1.3-second loop. [GIF preview](exports/characters/red-mage-idle-sheet-v3.gif)
+and [frame metadata](exports/characters/red-mage-idle-sheet-v3.json) are saved.
+Frame alignment was corrected in the live editor, and the planted boots are
+pixel-identical in all six frames. The generated source's soft alpha and
+large color range remain; native pixel cleanup is a separate step.
+
+Earlier: the [four-frame idle animation](source/characters/red-mage-idle-sheet-v2.aseprite)
 plays in Aseprite as a 1.2-second loop, with four 627 × 627 frames and timings
 of 400/200/400/200ms. [GIF preview](exports/characters/red-mage-idle-aseprite-v2.gif),
 [horizontal atlas](exports/characters/red-mage-idle-aseprite-v2.png) and
