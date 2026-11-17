@@ -1,0 +1,35 @@
+{ "frames": [
+   {
+    "filename": "wizard-concept-01.aseprite",
+    "frame": { "x": 0, "y": 0, "w": 64, "h": 64 },
+    "rotated": false,
+    "trimmed": false,
+    "spriteSourceSize": { "x": 0, "y": 0, "w": 64, "h": 64 },
+    "sourceSize": { "w": 64, "h": 64 },
+    "duration": 100
+   }
+ ],
+ "meta": {
+  "app": "http://www.aseprite.org/",
+  "version": "1.3.18.6",
+  "image": "wizard-concept-01.png",
+  "format": "RGBA8888",
+  "size": { "w": 64, "h": 64 },
+  "scale": "1",
+  "frameTags": [
+  ],
+  "layers": [
+   { "name": "leg-far", "opacity": 255, "blendMode": "normal" },
+   { "name": "arm-far", "opacity": 255, "blendMode": "normal" },
+   { "name": "torso", "opacity": 255, "blendMode": "normal" },
+   { "name": "head", "opacity": 255, "blendMode": "normal" },
+   { "name": "leg-near", "opacity": 255, "blendMode": "normal" },
+   { "name": "arm-near", "opacity": 255, "blendMode": "normal" },
+   { "name": "magic", "opacity": 255, "blendMode": "normal" },
+   { "name": "scarf", "opacity": 255, "blendMode": "normal" }
+  ],
+  "slices": [
+   { "name": "frame", "keys": [{ "frame": 0, "bounds": {"x": 0, "y": 0, "w": 64, "h": 64 }, "pivot": {"x": 32, "y": 60 } }] }
+  ]
+ }
+}

@@ -1,6 +1,25 @@
 # Wild Magic Academy — art and animation project
 
-Status: separate workstream prepared; asset production has not started.
+Status: active. A first character concept and an editable Aseprite template are
+prepared for user review. Animation, map artwork and engine integration are pending.
+
+## Current work
+
+The user supplies art direction and Codex draws in the live Aseprite window.
+The first requested style reference is ANNO: Mutationem. Start with one original
+apprentice mock-up, settle the design, then animate it and test a courtyard sample.
+
+- [Concept brief](CONCEPT-01.md): design intent, reference and review gate.
+- [Editable wizard concept](source/characters/wizard-concept-01.aseprite).
+- [Blank character template](source/characters/wizard-template.aseprite).
+- [Transparent sprite](exports/characters/wizard-concept-01.png),
+  [atlas metadata](exports/characters/wizard-concept-01.json) and
+  [enlarged preview](exports/characters/wizard-concept-01-preview.png).
+- [Aseprite workflow](ASEPRITE-WORKFLOW.md): source/export conventions and the
+  planned character, animation and map handoff to Bevy.
+
+This is one static 64 × 64 design study. It has not been approved as the final
+character style, animated or imported into the current renderer.
 
 ## Brief
 

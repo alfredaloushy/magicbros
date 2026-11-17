@@ -2,7 +2,11 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: desktop two-player LAN prototype
+## Current milestone: first Aseprite character concept
+
+Two-computer Wi-Fi testing is paused at the user's request until a second
+computer is available. The host is stopped and its temporary firewall rule has
+been removed. Art exploration proceeds alongside the pending network gate.
 
 | Part | Status |
 | --- | --- |
@@ -29,11 +33,14 @@ This file is updated as work progresses. Open it alongside the conversation to f
 | Protocol/input correctness | Stable IDs, sequencing, respawn generations, bounded framing and timeouts |
 | LAN verification | Real loopback combat tests pass; host/client GPU screenshots inspected |
 | Physical network/device gate | Two computers on Wi-Fi and Android/iOS playtests still pending |
+| Aseprite art workstream | Live editor connected; first wizard concept, rigged template and PNG/JSON handoff prepared |
+| Character style | ANNO: Mutationem reference requested; original apprentice mock-up awaiting user review |
+| Animation and map artwork | Pending first concept review and in-motion scale test |
 
 ## Development projects
 
 - `projects/core-gameplay/` — active: movement, combat, collision and respawn.
-- `projects/art-animation/` — character sprites, spell effects, arena artwork and animation.
+- `projects/art-animation/` — active: first Aseprite apprentice concept; animation and map art follow review.
 - `projects/multiplayer/` — implemented authoritative host, input transport and synchronization.
 - `projects/ui-audio/` — HUD, menus, feedback, audio and eventual touch controls.
 - `projects/mobile-builds/` — Android/iOS packaging, device testing and performance.
@@ -43,9 +50,10 @@ Later decisions in the conversation supersede the draft: Bevy is selected; Andro
 
 ## Current constraints
 
-Downloads and desktop startup now work through approved escalation. Sandboxed
-network/display access remains restricted; additional downloads or GUI launches
-may require approval. Full Bevy 0.18.1 and its locked dependencies are cached.
+Full Bevy 0.18.1 and its locked dependencies are cached. Desktop startup has
+been verified, but the user reported an unresponsive host window during Wi-Fi
+setup. No second computer connected; further diagnosis was deferred when the
+test was stopped. Two-device Wi-Fi playtesting remains unverified.
 The core uses Bevy ECS; both the full Bevy adapter and the winit/softbuffer harness
 exercise that same simulation with placeholder graphics.
 The existing Godot project remains available as a reference.
@@ -63,7 +71,7 @@ The existing Godot project remains available as a reference.
 - Preview: [core gameplay lab](projects/core-gameplay/preview.png).
 - Preview inspected: arena, player/dummy, health, spell selection, controls and training status are legible.
 - Full Bevy compiled successfully and created the playtest window using NVIDIA
-  GeForce GTX 1650, driver 595.71.05, Vulkan. Process remains open for playtesting.
+  GeForce GTX 1650, driver 595.71.05, Vulkan. The LAN host is currently stopped.
 - Fixed Wayland build-time library discovery with runtime loading, and fixed
   NixOS GPU discovery by exposing the Vulkan loader and graphics driver libraries.
 - User accepted the locally tested core baseline and requested the LAN milestone.
@@ -78,9 +86,10 @@ The forward plan is in [ROADMAP.md](ROADMAP.md), from real Wi-Fi validation thro
 mobile controls, a polished combat slice, complete matches, expanded combat and
 release hardening. Each milestone has an explicit pass condition.
 
-Try the open host/client windows: click one to control that player. A/D moves,
-Space jumps, Shift dashes, mouse + click aims/casts, 1/2 switches. LAN gameplay
-continues while unfocused. Leaving either window ends the session.
+Review the open Aseprite wizard mock-up and [concept brief](projects/art-animation/CONCEPT-01.md).
+Revise the design with the user, then build idle/run animation and a small
+courtyard sample using the [art workflow](projects/art-animation/ASEPRITE-WORKFLOW.md).
+The current character is a static design study; it is not yet integrated into Bevy.
 
 To host, run `projects/multiplayer/run.sh host`; join with
 `projects/multiplayer/run.sh join HOST_IP`. Use 127.0.0.1 for two windows locally.

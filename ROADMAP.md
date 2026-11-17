@@ -152,4 +152,6 @@ meaningful milestone: run appropriate checks, record actual device/playtest
 evidence, review changes, commit and push to magicbros. Keep credentials, caches,
 build output and signing material out of Git.
 
-Immediate next action: milestone 1's two-computer Wi-Fi playtest.
+Immediate next action: review the first Aseprite wizard concept, then animate
+idle/run and explore a courtyard sample. The user paused milestone 1's physical
+Wi-Fi test until a second computer is ready; its pass condition remains pending.
