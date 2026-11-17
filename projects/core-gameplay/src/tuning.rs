@@ -1,7 +1,8 @@
 use bevy_ecs::prelude::*;
+use serde::{Deserialize, Serialize};
 
 /// Provisional values inherited from the Godot experiment, in world units/seconds.
-#[derive(Resource, Clone, Debug)]
+#[derive(Resource, Clone, Debug, Serialize, Deserialize)]
 pub struct Tuning {
     pub tick: f32,
     pub run_speed: f32,

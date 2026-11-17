@@ -182,9 +182,13 @@ pub fn cast(
     mut actors: Query<(Entity, &mut Actor, &Body, &PlayerCommand)>,
     mut projectiles: Query<&mut Projectile>,
     mut effects: ResMut<Effects>,
-    mut hits: ResMut<PendingHits>,
-    mut diagnostics: ResMut<Diagnostics>,
+    state: (
+        ResMut<PendingHits>,
+        ResMut<Diagnostics>,
+        ResMut<ProjectileIds>,
+    ),
 ) {
+    let (mut hits, mut diagnostics, mut ids) = state;
     let mut gusts = Vec::new();
     for (entity, mut actor, body, input) in &mut actors {
         if !actor.alive() || !input.cast || actor.cooldown > 0.0 {
@@ -195,7 +199,9 @@ pub fn cast(
         match actor.spell {
             Spell::Fireball => {
                 actor.cooldown = tuning.fire_cooldown;
+                ids.0 += 1;
                 commands.spawn(Projectile {
+                    id: ids.0,
                     // Begin at the body center and sweep the whole path. A muzzle
                     // offset can place a shot beyond a nearby thin wall or enemy.
                     position: body.position,

@@ -4,13 +4,11 @@ use bevy::{
     asset::RenderAssetUsages,
     prelude::*,
     render::render_resource::{Extent3d, TextureDimension, TextureFormat},
+    render::view::screenshot::{Screenshot, save_to_disk},
     window::PrimaryWindow,
 };
-use wild_magic_core::{
-    Simulation,
-    client::{BufferedInput, FixedClock},
-    model::Spell,
-};
+use wild_magic_core::{client::BufferedInput, model::Spell};
+use wild_magic_lan::{Mode, Session};
 
 #[allow(dead_code)]
 #[path = "../../desktop/src/render.rs"]
@@ -18,27 +16,54 @@ mod render;
 
 #[derive(Resource)]
 struct Lab {
-    simulation: Simulation,
+    session: Session,
     input: BufferedInput,
-    clock: FixedClock,
     cursor: glam::Vec2,
 }
 
 #[derive(Resource)]
 struct PreviewImage(Handle<Image>);
 
+#[derive(Resource)]
+struct Capture {
+    path: Option<String>,
+    frames: u32,
+}
+
 type LabView<'w, 's> = (
     Single<'w, 's, &'static Window, With<PrimaryWindow>>,
     Single<'w, 's, (&'static Camera, &'static GlobalTransform)>,
 );
 
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    let mut args: Vec<_> = std::env::args().skip(1).collect();
+    let capture = args.iter().any(|a| a == "--capture");
+    args.retain(|a| a != "--capture");
+    if args.iter().any(|a| a == "--help" || a == "-h") {
+        println!(
+            "Wild Magic Academy\n\nSolo practice: ./run.sh --bevy\nHost: ./run.sh --bevy --host [IP:PORT]\nJoin: ./run.sh --bevy --join HOST_IP[:PORT]\nDefault TCP port: 24560\nLAN gameplay continues when unfocused; your controls are cleared."
+        );
+        return Ok(());
+    }
+    let mode = Mode::parse(args)?;
+    let capture_name = match mode {
+        Mode::Practice => "practice",
+        Mode::Host(_) => "host",
+        Mode::Join(_) => "client",
+    };
+    let title = match mode {
+        Mode::Practice => "Core Gameplay Lab",
+        Mode::Host(_) => "LAN Host / Player 1",
+        Mode::Join(_) => "LAN Client / Player 2",
+    };
+    let session = Session::new(mode)?;
+    println!("{}", session.status());
     App::new()
         .add_plugins(
             DefaultPlugins
                 .set(WindowPlugin {
                     primary_window: Some(Window {
-                        title: "Wild Magic Academy | Bevy Core Gameplay Lab".into(),
+                        title: format!("Wild Magic Academy | {title}"),
                         resolution: (1280, 720).into(),
                         ..default()
                     }),
@@ -46,15 +71,32 @@ fn main() {
                 })
                 .set(ImagePlugin::default_nearest()),
         )
+        .insert_resource(bevy::winit::WinitSettings::continuous())
+        .insert_resource(Capture {
+            path: capture.then(|| format!(".cache/bevy-{capture_name}.png")),
+            frames: 0,
+        })
         .insert_resource(Lab {
-            simulation: Simulation::default(),
+            session,
             input: BufferedInput::default(),
-            clock: FixedClock::default(),
             cursor: glam::Vec2::new(860.0, 593.0),
         })
         .add_systems(Startup, setup)
-        .add_systems(Update, update)
+        .add_systems(Update, (update, capture_window).chain())
         .run();
+    Ok(())
+}
+
+fn capture_window(mut capture: ResMut<Capture>, lab: Res<Lab>, mut commands: Commands) {
+    capture.frames += 1;
+    if capture.frames > 60
+        && (lab.session.is_practice() || lab.session.connected())
+        && let Some(path) = capture.path.take()
+    {
+        commands
+            .spawn(Screenshot::primary_window())
+            .observe(save_to_disk(path));
+    }
 }
 
 fn setup(mut commands: Commands, mut images: ResMut<Assets<Image>>) {
@@ -101,18 +143,16 @@ fn update(
     }
     if !window.focused {
         lab.input = BufferedInput::default();
-        lab.clock = FixedClock::default();
     } else {
         if keys.just_pressed(KeyCode::KeyR) {
-            lab.simulation = Simulation::default();
+            lab.session.reset_practice();
             lab.input = BufferedInput::default();
-            lab.clock = FixedClock::default();
         }
         if keys.just_pressed(KeyCode::KeyT) {
-            lab.simulation.toggle_dummy();
+            lab.session.toggle_dummy();
         }
         if keys.just_pressed(KeyCode::KeyG) {
-            lab.simulation.toggle_dummy_spell();
+            lab.session.toggle_dummy_spell();
         }
         if let Some(cursor) = window.cursor_position()
             && let Ok(world) = camera.0.viewport_to_world_2d(camera.1, cursor)
@@ -140,23 +180,19 @@ fn update(
         if keys.just_pressed(KeyCode::Digit2) {
             lab.input.command.select = Some(Spell::Gust);
         }
-        let tick = lab
-            .simulation
-            .world
-            .resource::<wild_magic_core::Tuning>()
-            .tick as f64;
-        let ticks = lab.clock.advance(time.delta_secs_f64(), tick);
-        for _ in 0..ticks {
-            let input = lab.input.take_tick();
-            lab.simulation.step(input);
-        }
     }
+    let Lab { session, input, .. } = &mut *lab;
+    session.update(time.delta_secs_f64(), window.focused, input);
     let cursor = lab.cursor;
-    let frame = render::draw_with_backend(
-        &lab.simulation.snapshot(),
+    let session = &lab.session;
+    let frame = render::draw_session(
+        session.view(),
         cursor,
-        window.focused,
+        window.focused || !session.is_practice(),
         "BEVY 0.18 / RENDERER ADAPTER",
+        session.slot(),
+        session.is_practice(),
+        session.status(),
     );
     if let Some(image) = images.get_mut(&preview.0)
         && let Some(data) = image.data.as_mut()

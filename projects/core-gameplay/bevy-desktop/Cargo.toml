@@ -8,6 +8,7 @@ edition = "2024"
 
 [dependencies]
 wild-magic-core = { path = ".." }
+wild-magic-lan = { path = "../../multiplayer" }
 glam = "=0.30.10"
 # Load Wayland at runtime, matching the offline runner and avoiding a build-time
 # pkg-config dependency on distributions that keep system development files separate.

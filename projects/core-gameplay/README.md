@@ -88,6 +88,12 @@ intermediate adapter, not the final sprite/animation implementation.
 ./run.sh --bevy
 ```
 
+For two-player LAN, use `./run.sh --bevy --host` on the host and
+`./run.sh --bevy --join HOST_IP` on the other computer. Use `127.0.0.1` to test
+two windows locally. See [multiplayer](../multiplayer/README.md) for network setup,
+protocol, verification and current latency/device limits. LAN simulation continues
+when unfocused, while local controls clear. R/T/G remain practice-only.
+
 **Build and startup verified:** Bevy 0.18.1 and its dependencies are downloaded
 and locked. The adapter compiles, its three tests pass, and strict Clippy passes.
 It opened a window on NVIDIA GeForce GTX 1650 through Vulkan (driver 595.71.05).
@@ -137,8 +143,9 @@ required; automated tests and window startup do not establish gameplay feel.
 
 ## Current boundaries and provisional rules
 
-- One local player and one practice dummy. Networking, touch controls and mobile
-  packaging belong to later projects.
+- Practice mode has one local player and a dummy. The separate LAN session
+  replaces the dummy with a real remote player and resolves combat on the host.
+  Touch controls and mobile packaging remain later work.
 - Static whole-arena camera and solid rectangular platforms. No pit, breakables,
   slopes, moving platforms, actor-on-actor collisions or final courtyard layout.
 - Both spells are always available. Shared cast cooldown prevents switch spamming.

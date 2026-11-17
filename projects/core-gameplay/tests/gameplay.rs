@@ -601,6 +601,7 @@ fn spell_switch_does_not_bypass_cast_cooldown() {
 fn incoming(sim: &mut Simulation, position: Vec2, velocity: Vec2) -> Entity {
     sim.world
         .spawn(Projectile {
+            id: 0,
             position,
             velocity,
             owner: sim.dummy,

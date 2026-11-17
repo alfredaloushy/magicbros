@@ -146,6 +146,19 @@ pub fn draw(state: &Snapshot, cursor: Vec2, focused: bool) -> Vec<u32> {
 }
 
 pub fn draw_with_backend(state: &Snapshot, cursor: Vec2, focused: bool, backend: &str) -> Vec<u32> {
+    draw_session(state, cursor, focused, backend, 0, true, "SOLO PRACTICE")
+}
+
+#[allow(clippy::too_many_arguments)]
+pub fn draw_session(
+    state: &Snapshot,
+    cursor: Vec2,
+    focused: bool,
+    backend: &str,
+    local_slot: u8,
+    practice: bool,
+    status: &str,
+) -> Vec<u32> {
     let mut c = Canvas::new();
     for y in (140..650).step_by(40) {
         c.rect(24, y, 1232, 1, 0x211f33);
@@ -261,10 +274,14 @@ pub fn draw_with_backend(state: &Snapshot, cursor: Vec2, focused: bool, backend:
         c.rect(p.x as i32 + eye_x, p.y as i32 - 12, 4, 4, 0x242032);
         let hand = p + Vec2::new(actor.aim.x, -actor.aim.y) * 23.0;
         c.circle(hand, 4.0, 0xf0c9a8);
-        let label = if actor.slot == 0 {
+        let label = if actor.slot == local_slot {
             "YOU"
-        } else {
+        } else if practice {
             "TRAINING DUMMY"
+        } else if actor.slot == 0 {
+            "PLAYER 1"
+        } else {
+            "PLAYER 2"
         };
         c.text(
             p.x as i32 - label.len() as i32 * 3,
@@ -284,7 +301,7 @@ pub fn draw_with_backend(state: &Snapshot, cursor: Vec2, focused: bool, backend:
                 GUST,
             );
         }
-        if actor.slot == 0 || actor.health_reveal > 0.0 {
+        if actor.slot == local_slot || actor.health_reveal > 0.0 {
             c.rect(p.x as i32 - 25, p.y as i32 - 43, 50, 4, 0x3d354f);
             c.rect(
                 p.x as i32 - 25,
@@ -294,7 +311,7 @@ pub fn draw_with_backend(state: &Snapshot, cursor: Vec2, focused: bool, backend:
                 color,
             );
         }
-        if actor.slot == 0 {
+        if actor.slot == local_slot {
             let dir = Vec2::new(actor.aim.x, -actor.aim.y);
             for step in [42.0, 55.0, 68.0] {
                 c.circle(p + dir * step, 1.0, 0xaaa1c9);
@@ -312,7 +329,7 @@ pub fn draw_with_backend(state: &Snapshot, cursor: Vec2, focused: bool, backend:
     let Some(local) = state
         .actors
         .iter()
-        .find(|v| v.actor.slot == 0)
+        .find(|v| v.actor.slot == local_slot)
         .map(|v| &v.actor)
     else {
         c.text(34, 83, "NO LOCAL PLAYER", 2, MUTED);
@@ -369,21 +386,31 @@ pub fn draw_with_backend(state: &Snapshot, cursor: Vec2, focused: bool, backend:
         .find(|a| a.dummy_firing.is_some())
         .map(|a| a.actor.spell)
         .unwrap_or_default();
-    c.text(
-        850,
-        51,
-        &format!(
-            "DUMMY {}: {} [T]",
-            if dummy_spell == Spell::Gust {
-                "GUST"
-            } else {
-                "FIREBALL"
-            },
-            if firing { "ON" } else { "OFF" }
-        ),
-        2,
-        if firing { FIRE } else { GUST },
-    );
+    if practice {
+        c.text(
+            850,
+            51,
+            &format!(
+                "DUMMY {}: {} [T]",
+                if dummy_spell == Spell::Gust {
+                    "GUST"
+                } else {
+                    "FIREBALL"
+                },
+                if firing { "ON" } else { "OFF" }
+            ),
+            2,
+            if firing { FIRE } else { GUST },
+        );
+    } else {
+        c.text(
+            850,
+            51,
+            &status.chars().take(62).collect::<String>(),
+            1,
+            GUST,
+        );
+    }
     c.text(
         850,
         83,
@@ -407,7 +434,8 @@ pub fn draw_with_backend(state: &Snapshot, cursor: Vec2, focused: bool, backend:
     c.text(
         32,
         698,
-        "1/2 SELECT SPELL   Q/RIGHT CLICK SWITCH   T DUMMY FIRE   G DUMMY SPELL   R RESET   ESC QUIT",
+        if practice { "1/2 SELECT SPELL   Q/RIGHT CLICK SWITCH   T DUMMY FIRE   G DUMMY SPELL   R RESET   ESC QUIT" }
+        else { "1/2 SELECT SPELL   Q/RIGHT CLICK SWITCH   ESC LEAVE SESSION   HOST RESOLVES ALL COMBAT" },
         1,
         MUTED,
     );

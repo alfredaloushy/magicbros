@@ -1,4 +1,4 @@
-# Shared integration contract — prototype 0.1
+# Shared integration contract — core and LAN prototype
 
 Core gameplay owns authoritative mechanics. Other projects adapt input and
 presentation; they should not reimplement damage, movement or spell outcomes.
@@ -25,11 +25,14 @@ validated; local commands are sanitized before entering the schedule.
 state, arena platforms, transient effects and bounded diagnostic counters. It
 clones this small world for the prototype, not a production networking format.
 Bevy `Entity` values are process-local and **must not be used as network IDs**.
-`Actor.slot` currently identifies the local player (0) and dummy (1); `generation`
-increments at respawn for stale-state rejection in a future protocol.
+`Actor.slot` identifies host/player 1 (0) and client/player 2 (1) in LAN mode.
+In solo practice slot 1 is the dummy. `generation` increments at respawn; the LAN
+host rejects remote commands from an older generation.
 
-There is no replay, rollback, prediction, serialization or transport yet. The
-simulation is fixed-step but cross-machine deterministic lockstep is not claimed.
+`Simulation::duel()` removes the dummy input source. `step_players([host, remote])`
+sanitizes independent commands and advances the same shared schedule once. The
+network project serializes explicit DTOs over TCP; there is no replay, rollback,
+prediction or lockstep claim. Bevy Entity values remain process-local.
 
 ## Art and animation
 
@@ -67,13 +70,19 @@ simulation is fixed-step but cross-machine deterministic lockstep is not claimed
 
 ## Multiplayer
 
-- Initial design: one authoritative host over local Wi-Fi; host departure ends play.
-- Introduce stable player/projectile IDs, tick/sequence numbers, validated commands,
-  acknowledgement and state serialization before sending state between machines.
-- Resolve all movement/collision, casting, reflection, damage and respawn on the host.
-- Remote actors need their own input submissions; `Simulation::step` currently
-  accepts only local-player input and the dummy has an automatic input system.
-  Replace the dummy input source and extend command submission before networking.
+- Implemented in `projects/multiplayer`: one authoritative host and one client;
+  host or client departure ends the prototype session.
+- Player slots, monotonic projectile IDs, input sequence acknowledgements and
+  respawn generation accompany explicit state DTOs. No Entity bits cross the wire.
+- Core `ProjectileIds` allocates each Fireball's u64 ID; reflection preserves it.
+- Host resolves all movement/collision, casting, reflection, damage and respawn
+  at 120Hz. Client sends controls at up to 60Hz, receives full state at 30Hz, and
+  renders it without its own combat simulation or prediction.
+- `Session` handles practice/host/join modes, neutral input on focus loss, stale
+  input clearing, protocol validation and ended-session status. LAN hosts continue
+  ticking when unfocused; the solo practice pause behavior remains.
+- See [PROTOCOL.md](../multiplayer/PROTOCOL.md) for framing, queue bounds,
+  sequencing/generation rules, ownership, timeout and connection lifecycle.
 - Keep original caster and current owner separately. Reflections preserve the
   former and change the latter. The first return targets the original caster.
   Provisional counter-return rule: when that original caster uses Gust, return to
@@ -81,6 +90,7 @@ simulation is fixed-step but cross-machine deterministic lockstep is not claimed
   before finalizing multiplayer combat; kill attribution remains unresolved.
 - A generation change should reset interpolation/prediction at respawn. Clear
   stale input, projectile visuals and old damage feedback on that transition.
+  Current clients replace complete state and do not interpolate/predict yet.
 - Existing Godot netcode may inform behavior but is not the Bevy network backend.
 
 ## UI and audio

@@ -12,6 +12,7 @@ are the intended targets; the current prototype runs on desktop.
 - Quick-cast Fireball and Gust, damage, protection, defeat and automatic respawn.
 - Gust projectile returns, strong airborne launch and a temporary movement slow.
 - A practice dummy with switchable Fireball/Gust for local playtesting.
+- Two-player desktop LAN hosting/joining with authoritative shared combat state.
 
 Gust currently uses a fixed launch with upward lift and a 0.2-second forced
 motion phase, followed by a one-second 30% reduction to run/dash speed. All balance
@@ -35,12 +36,24 @@ See the [core README](projects/core-gameplay/README.md) for controls, limitation
 and separate Bevy adapter checks. Follow [PLAYTEST.md](projects/core-gameplay/PLAYTEST.md)
 for manual validation.
 
+For multiplayer, start these in separate terminals from the repository root:
+
+```sh
+./projects/multiplayer/run.sh host
+./projects/multiplayer/run.sh join HOST_WIFI_IP
+```
+
+Use `127.0.0.1` as the join IP to test two windows on one computer. Default port
+is TCP 24560. See the [LAN instructions](projects/multiplayer/README.md) and
+[two-device checklist](projects/multiplayer/PLAYTEST.md). Loopback combat and two
+Bevy windows are verified; physical Wi-Fi/device playtesting remains pending.
+
 ## Project layout
 
 | Directory | Purpose |
 | --- | --- |
 | `projects/core-gameplay/` | Active Bevy ECS simulation and desktop prototypes |
-| `projects/multiplayer/` | Next milestone: two-player local Wi-Fi |
+| `projects/multiplayer/` | LAN transport, sessions, protocol and two-player checks |
 | `projects/art-animation/` | Asset and impact animation workstream |
 | `projects/ui-audio/` | UI, feedback, sound and touch-control workstream |
 | `projects/mobile-builds/` | Android/iOS builds and device validation |

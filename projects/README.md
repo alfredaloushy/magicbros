@@ -1,7 +1,7 @@
 # Wild Magic Academy development projects
 
-Each directory owns a development area, its brief, and its deliverables. Only the
-core project is being implemented in this milestone. These are local projects;
+Each directory owns a development area, its brief, and its deliverables. The core
+and desktop LAN prototype are implemented; device playtests remain. These are local projects;
 no new Codex conversations or remote repositories have been created.
 
 | Project | Owns | Depends on |

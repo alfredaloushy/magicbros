@@ -1,7 +1,8 @@
 use bevy_ecs::prelude::*;
 use glam::Vec2;
+use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Copy, Debug, Default, PartialEq, Eq)]
+#[derive(Clone, Copy, Debug, Default, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Spell {
     #[default]
     Fireball,
@@ -10,7 +11,7 @@ pub enum Spell {
 
 /// Input contract shared by desktop, future touch, and future network adapters.
 /// Aim is an absolute world position. Edge actions must be submitted for one tick.
-#[derive(Component, Clone, Copy, Debug)]
+#[derive(Component, Clone, Copy, Debug, Serialize, Deserialize)]
 pub struct PlayerCommand {
     pub movement: Vec2,
     pub aim_world: Vec2,
@@ -61,7 +62,7 @@ impl PlayerCommand {
     }
 }
 
-#[derive(Component, Clone, Debug)]
+#[derive(Component, Clone, Debug, Serialize, Deserialize)]
 pub struct Actor {
     pub slot: u8,
     pub spawn: Vec2,
@@ -89,7 +90,7 @@ impl Actor {
     }
 }
 
-#[derive(Component, Clone, Debug)]
+#[derive(Component, Clone, Debug, Serialize, Deserialize)]
 pub struct Body {
     pub position: Vec2,
     pub velocity: Vec2,
@@ -106,6 +107,7 @@ pub struct Dummy {
 
 #[derive(Component, Clone, Debug)]
 pub struct Projectile {
+    pub id: u64,
     pub position: Vec2,
     pub velocity: Vec2,
     pub owner: Entity,
@@ -114,7 +116,7 @@ pub struct Projectile {
     pub reflected: bool,
 }
 
-#[derive(Clone, Copy, Debug)]
+#[derive(Clone, Copy, Debug, Serialize, Deserialize)]
 pub struct Platform {
     pub center: Vec2,
     pub half: Vec2,
@@ -150,13 +152,13 @@ impl Default for Arena {
     }
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub enum EffectKind {
     Explosion,
     Gust { direction: Vec2 },
 }
 
-#[derive(Clone, Debug)]
+#[derive(Clone, Debug, Serialize, Deserialize)]
 pub struct Effect {
     pub position: Vec2,
     pub radius: f32,
@@ -182,7 +184,7 @@ pub struct Hit {
 pub struct PendingHits(pub Vec<Hit>);
 
 /// Bounded diagnostics for playtesting. Not a scoring/attribution system.
-#[derive(Resource, Default, Clone, Debug)]
+#[derive(Resource, Default, Clone, Debug, Serialize, Deserialize)]
 pub struct Diagnostics {
     pub tick: u64,
     pub casts: u64,
@@ -209,3 +211,6 @@ pub struct Snapshot {
     pub effects: Vec<Effect>,
     pub diagnostics: Diagnostics,
 }
+
+#[derive(Resource, Default)]
+pub struct ProjectileIds(pub u64);

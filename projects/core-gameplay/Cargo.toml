@@ -11,7 +11,8 @@ resolver = "2"
 
 [dependencies]
 bevy_ecs = { version = "=0.18.1", default-features = false, features = ["std"] }
-glam = "=0.30.10"
+glam = { version = "=0.30.10", features = ["serde"] }
+serde = { version = "=1.0.229", features = ["derive"] }
 
 [profile.dev]
 opt-level = 1

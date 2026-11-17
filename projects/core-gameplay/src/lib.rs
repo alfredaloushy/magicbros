@@ -4,6 +4,7 @@ pub mod model;
 pub mod systems;
 pub mod tuning;
 
+pub use bevy_ecs::entity::Entity;
 use bevy_ecs::prelude::*;
 use glam::Vec2;
 use model::*;
@@ -32,6 +33,7 @@ impl Simulation {
         world.insert_resource(Effects::default());
         world.insert_resource(PendingHits::default());
         world.insert_resource(Diagnostics::default());
+        world.insert_resource(ProjectileIds::default());
         let local_player = spawn_actor(&mut world, 0, Vec2::new(-220.0, -233.0), &tuning);
         let dummy = spawn_actor(&mut world, 1, Vec2::new(220.0, -233.0), &tuning);
         world.entity_mut(dummy).insert(Dummy {
@@ -62,14 +64,31 @@ impl Simulation {
     }
 
     pub fn step(&mut self, command: PlayerCommand) {
-        let body = self.world.get::<Body>(self.local_player).unwrap();
-        let actor = self.world.get::<Actor>(self.local_player).unwrap();
-        let command = command.sanitized(body.position + actor.aim);
-        *self
-            .world
-            .get_mut::<PlayerCommand>(self.local_player)
-            .unwrap() = command;
+        self.set_command(self.local_player, command);
         self.schedule.run(&mut self.world);
+    }
+
+    /// Two real players, retaining the same mechanics and spawn positions.
+    pub fn duel() -> Self {
+        let mut simulation = Self::default();
+        simulation
+            .world
+            .entity_mut(simulation.dummy)
+            .remove::<Dummy>();
+        simulation
+    }
+
+    pub fn step_players(&mut self, commands: [PlayerCommand; 2]) {
+        self.set_command(self.local_player, commands[0]);
+        self.set_command(self.dummy, commands[1]);
+        self.schedule.run(&mut self.world);
+    }
+
+    fn set_command(&mut self, entity: Entity, command: PlayerCommand) {
+        let body = self.world.get::<Body>(entity).unwrap();
+        let actor = self.world.get::<Actor>(entity).unwrap();
+        *self.world.get_mut::<PlayerCommand>(entity).unwrap() =
+            command.sanitized(body.position + actor.aim);
     }
 
     pub fn toggle_dummy(&mut self) {

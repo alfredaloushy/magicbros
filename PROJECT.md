@@ -2,7 +2,7 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: core gameplay prototype
+## Current milestone: desktop two-player LAN prototype
 
 | Part | Status |
 | --- | --- |
@@ -19,17 +19,22 @@ This file is updated as work progresses. Open it alongside the conversation to f
 | Offline desktop test window and basic HUD | Builds; CLI/render/input regressions pass; snapshot reviewed |
 | Full Bevy renderer adapter | Bevy 0.18.1 downloaded; build, three adapter tests and strict Clippy pass |
 | Bevy window startup | Running on NVIDIA GTX 1650 / Vulkan after graphics library fix |
-| Playtest checklist and integration notes | Complete; human playtest remains pending |
+| Core baseline | Accepted by user after local playtesting; tuning retained |
 | Formatting and static checks | Pass: rustfmt, Clippy with warnings denied, shell syntax |
 | Input timing, jump/dash and counter-return fixes | Verified by regression tests |
 | Repeatable setup | `run.sh` and `check.sh` use a persistent project-local Cargo cache |
 | Airborne dash charge | One per flight; landing restores charge; cooldown retained |
+| LAN host/join | Implemented in Bevy; manual IP, TCP 24560; exactly two players |
+| Shared combat state | Host-authoritative movement, spells, Gust status, health and respawn |
+| Protocol/input correctness | Stable IDs, sequencing, respawn generations, bounded framing and timeouts |
+| LAN verification | Real loopback combat tests pass; host/client GPU screenshots inspected |
+| Physical network/device gate | Two computers on Wi-Fi and Android/iOS playtests still pending |
 
 ## Development projects
 
 - `projects/core-gameplay/` — active: movement, combat, collision and respawn.
 - `projects/art-animation/` — character sprites, spell effects, arena artwork and animation.
-- `projects/multiplayer/` — authoritative host, input transport and synchronization.
+- `projects/multiplayer/` — implemented authoritative host, input transport and synchronization.
 - `projects/ui-audio/` — HUD, menus, feedback, audio and eventual touch controls.
 - `projects/mobile-builds/` — Android/iOS packaging, device testing and performance.
 
@@ -49,6 +54,8 @@ The existing Godot project remains available as a reference.
 
 - 58 tests pass: 48 gameplay, five shared input/clock, five desktop CLI/render.
 - Three additional full-Bevy adapter tests pass; its strict Clippy check passes.
+- Fourteen LAN tests pass, including six real TCP loopback cases and stalled-input
+  handling. Total: 75 tests across core/harness, Bevy adapter and LAN package.
 - Includes a 12,000-tick combat soak and regressions for missed clicks, thin-wall
   shots, dash/jump consumption, dash knockback, counter-returns and resize aiming.
 - `projects/core-gameplay/check.sh` passes from the project-local Cargo cache.
@@ -59,21 +66,28 @@ The existing Godot project remains available as a reference.
   GeForce GTX 1650, driver 595.71.05, Vulkan. Process remains open for playtesting.
 - Fixed Wayland build-time library discovery with runtime loading, and fixed
   NixOS GPU discovery by exposing the Vulkan loader and graphics driver libraries.
-- User reported the prototype seems in order and dash cooldown feels good.
-  New requested rule: one airborne dash per flight, restored on landing.
-  New charge behavior awaits a follow-up playtest; individual checklist results
-  have not been recorded as completed.
+- User accepted the locally tested core baseline and requested the LAN milestone.
+- Two actual Bevy windows connected on loopback. GPU captures were inspected:
+  each has its correct YOU label, own HUD, peer actor and connected status.
+- Loopback tests confirm shared Fireball damage/defeat/respawn, Gust launch/slow/
+  reflection, disconnects, extra-player rejection and continued unfocused hosting.
 
 ## Next concrete action
 
-Try the open Bevy window: A/D to move, Space to jump, Shift to dash, mouse + click
-to aim/cast, 1/2 to switch, and T to enable dummy fire. Follow the core project's
-`PLAYTEST.md` and report any failures for fixes before beginning local Wi-Fi work.
+Try the open host/client windows: click one to control that player. A/D moves,
+Space jumps, Shift dashes, mouse + click aims/casts, 1/2 switches. LAN gameplay
+continues while unfocused. Leaving either window ends the session.
 
-To relaunch, run `projects/core-gameplay/run.sh --bevy`. For the complete
+To host, run `projects/multiplayer/run.sh host`; join with
+`projects/multiplayer/run.sh join HOST_IP`. Use 127.0.0.1 for two windows locally.
+Follow `projects/multiplayer/PLAYTEST.md` on two physical computers next and record
+client responsiveness. Client prediction/interpolation are not yet implemented.
+
+For solo practice, run `projects/core-gameplay/run.sh --bevy`. For the complete
 download/build/check/launch flow, use `bevy-playtest.sh`; its output is logged to
 `.cache/logs/bevy-playtest.log` inside the core project.
 
 Code fixes are detailed in [FIXES.md](projects/core-gameplay/FIXES.md).
 
-Begin the local Wi-Fi milestone after the local core playtest gate passes.
+Phones, hotspot/no-internet validation and the broader release features remain
+separate milestones. Loopback evidence does not mark those gates complete.
