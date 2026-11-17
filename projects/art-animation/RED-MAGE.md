@@ -45,6 +45,28 @@ was imported temporarily for comparison and removed before saving exports.
 
 ## Review and limits
 
+### Single magenta source for manual animation
+
+The user's next prompt requested one complete, centered, front-facing subject
+on an opaque, uniform `#FF00FF` background, visually simulating 256 × 256 pixel
+art. Built-in imagegen used the original red mage reference to create the
+[single source image](references/red-mage-idle-source-magenta-v1.png), retaining
+the actual 1254 × 1254 output resolution. This is a static starting frame for
+external idle-animation generation, rather than an animation or native 256px
+export. It does not change the side-facing gameplay-art convention.
+
+The generated background contained near-magenta variation. After explicit
+user approval, a deterministic pixel pass replaced only pixels in the narrow
+near-magenta background band with exact RGB `(255, 0, 255)`. The character was
+not resized, repositioned or recolored outside that mask. The
+[untouched generated original](references/red-mage-idle-source-magenta-v1-generated.png),
+[generation prompt](references/red-mage-idle-source-magenta-v1-prompt.txt) and
+[validation metadata](references/red-mage-idle-source-magenta-v1.json) are retained.
+Independent lossless PNG decoding verified full opacity, exact key color on
+every border/background-mask pixel and unchanged values outside the mask.
+The subject bounds are `(324, 174)` through `(929, 1080)`, centered with more
+than 10% empty margin on every side.
+
 ### Generated idle sheet v2
 
 At the user's request, built-in imagegen produced a new four-frame idle sheet

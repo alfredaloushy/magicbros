@@ -1,0 +1,19 @@
+Use case: stylized-concept.
+Asset type: single image-to-video source image for an idle animation.
+Image 1 is the red mage character identity and costume reference. Make the SAME character, maintaining the large floppy crimson hat, gold hat star and brim, brown fringe, warm pale face, crimson cape with gold edging and hem star, shoulder collar and gold clasp, charcoal tunic and trousers, square gold belt buckle and brown boots. Adapt the reference into a neutral FRONT-FACING game-sprite starting pose, arms relaxed at the sides, both boots planted evenly, no added accessories or props. Exactly one character, not a sprite sheet and not a multi-pose display.
+
+Follow this user's source-image specification:
+idle animation
+Create one square animation-ready source image that visually simulates native 256×256 pixel art.
+Show exactly one complete subject in a clear neutral starting pose, centered at a stable scale with generous empty margin on all four sides.
+Keep the full silhouette, head, hands, feet, clothing and props completely visible and separated from every image edge.
+Use crisp pixel-art shapes, controlled colors, readable hard edges and consistent front-facing game-sprite proportions.
+Do not add transparency, cropping, shadows, a floor, gradients, glow, particles, text, UI, scenery, duplicate subjects or background objects.
+
+BACKGROUND EXTRACTION CONTRACT:
+- Fill the entire background edge to edge with one perfectly uniform flat #FF00FF (RGB 255,0,255) chroma magenta.
+- Do not use that key color anywhere on the subject, including clothing, props, outlines, highlights, glow, or effects.
+- No gradient, texture, scenery, floor, shadow, lighting falloff, frame, border, text, or background objects.
+- Keep one complete subject centered with generous empty key-color margin on every side; nothing may touch or be cropped by the image edge.
+
+Compose the whole character within the central 64% of the square canvas: at least 18% empty magenta margin above the hat and below the boot soles, and generous matching margins to the left and right. Center the complete silhouette horizontally. Keep edges crisp and deliberate and use uniform square pixel clusters, without smooth antialiasing. Every background pixel, including the entire border and empty pockets between arms and torso, must be exactly RGB(255,0,255); the image must be fully opaque. A static neutral first frame only, ready to animate externally.

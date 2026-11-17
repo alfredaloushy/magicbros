@@ -5,6 +5,10 @@ prepared for user review. Animation, map artwork and engine integration are pend
 
 ## Current work
 
+For the manual Pixelate workflow: [single front-facing red mage source](references/red-mage-idle-source-magenta-v1.png),
+fully opaque with an exact `#FF00FF` background. The square source is styled as
+256 × 256 pixel art and retained at its actual 1254 × 1254 raster size.
+
 New: [generated four-frame red mage idle sheet](exports/characters/red-mage-idle-sheet-v2.png)
 with [frame coordinates and timing](exports/characters/red-mage-idle-sheet-v2.json).
 This preserves the generated RGBA image at 1254 × 1254, arranged as four
