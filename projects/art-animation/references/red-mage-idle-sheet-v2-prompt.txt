@@ -1,0 +1,23 @@
+Use case: stylized-concept.
+Asset type: production-style pixel-art idle-animation sprite sheet for Wild Magic Academy.
+Image 1 is the SOLE CHARACTER DESIGN REFERENCE. Reproduce this specific red mage faithfully; do not invent a different wizard or use the old animation draft.
+
+OUTPUT: one square 1024 x 1024 RGBA PNG sprite sheet, genuinely transparent background. EXACTLY FOUR full-body sprites in an invisible, perfectly regular 2-column x 2-row grid. Each frame cell is EXACTLY 512 x 512 pixels. Reading order: top-left = frame 1, top-right = frame 2, bottom-left = frame 3, bottom-right = frame 4. Do not draw grid lines, cell boxes, labels, numbers, captions, scenery, ground, shadows or checkerboards.
+
+ALIGNMENT IS THE HIGHEST PRIORITY:
+- Identical camera, scale and right-facing side-profile view in all four cells.
+- In EVERY cell, the midpoint between the planted boots is at local x=256 and both boot soles rest on the same local y=456 baseline. Global feet-midpoint anchors are (256,456), (768,456), (256,968), (768,968).
+- Both boots, feet positions, belt position and lower legs remain completely stationary across all four frames. NO whole-body translation, no sliding, no zoom, no rotation, no recentering between cells.
+- Keep the complete hat, cape, hands and boots comfortably within each cell. No overlap between cells, no clipping or detached body parts.
+- Treat the sheet as a 256 x 256 logical pixel canvas enlarged EXACTLY 4x nearest-neighbour: each cell is 128 x 128 logical pixels, with deliberate crisp square pixel clusters and hard edges. Use one consistent pixel density and identical palette across every frame.
+
+DESIGN INVARIANTS copied from Image 1: short, compact young mage, oversized floppy crimson hat with drooping tip to the left, gold hat star and gold-edged brim; same hat tilt, same large head and short body proportions; brown fringe; one visible dark eye, small warm pale face facing right; red shoulder collar with a small gold clasp; red cape flowing behind to the left with gold edging and the same gold star decoration near the hem; dark charcoal tunic/trousers; brown belt with square gold buckle; brown boots. Keep exactly the reference's silhouette, facial features, colors, costume details and accessory count. Both arms relaxed beside the torso. NO staff, weapons, spell effects or extra objects.
+
+ANIMATION: a restrained seamless breathing idle, not walking.
+Frame 1: neutral resting pose, shoulders relaxed, cape resting.
+Frame 2: gentle inhale, chest/shoulders lift by only ONE logical pixel, head and hat move with the neck; cape and hat tip lag subtly.
+Frame 3: soft peak of inhale, chest expands very slightly, cape hem and hat tip settle ONE logical pixel; retain exact limb lengths and anatomy.
+Frame 4: gentle exhale, shoulders return toward frame 1, delayed cape/hat-tip return. Smooth transition back to frame 1 without a snap. Keep the eye and expression identical; no blink needed.
+All four sprites must clearly be the SAME reference character with tiny idle changes. Keep both planted boots pixel-identical across the four cells. Maintain connected neck, shoulders, arms and torso. No changing stars, belt buckle, costume, hat dimensions, limb count or handedness between frames.
+
+Deliver only the clean transparent sprite sheet.

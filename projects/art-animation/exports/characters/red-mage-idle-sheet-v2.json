@@ -1,0 +1,133 @@
+{
+  "frames": [
+    {
+      "filename": "idle-00",
+      "frame": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "sourceSize": {
+        "w": 627,
+        "h": 627
+      },
+      "duration": 400
+    },
+    {
+      "filename": "idle-01",
+      "frame": {
+        "x": 627,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "sourceSize": {
+        "w": 627,
+        "h": 627
+      },
+      "duration": 400
+    },
+    {
+      "filename": "idle-02",
+      "frame": {
+        "x": 0,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "sourceSize": {
+        "w": 627,
+        "h": 627
+      },
+      "duration": 400
+    },
+    {
+      "filename": "idle-03",
+      "frame": {
+        "x": 627,
+        "y": 627,
+        "w": 627,
+        "h": 627
+      },
+      "rotated": false,
+      "trimmed": false,
+      "spriteSourceSize": {
+        "x": 0,
+        "y": 0,
+        "w": 627,
+        "h": 627
+      },
+      "sourceSize": {
+        "w": 627,
+        "h": 627
+      },
+      "duration": 400
+    }
+  ],
+  "meta": {
+    "app": "Built-in imagegen",
+    "image": "red-mage-idle-sheet-v2.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1254,
+      "h": 1254
+    },
+    "scale": "1",
+    "frameTags": [
+      {
+        "name": "idle",
+        "from": 0,
+        "to": 3,
+        "direction": "forward"
+      }
+    ],
+    "slices": [
+      {
+        "name": "feet",
+        "keys": [
+          {
+            "frame": 0,
+            "bounds": {
+              "x": 0,
+              "y": 0,
+              "w": 627,
+              "h": 627
+            },
+            "pivot": {
+              "x": 345,
+              "y": 582
+            }
+          }
+        ]
+      }
+    ],
+    "reference": "../../references/red-mage-reference-v1.png",
+    "prompt": "../../references/red-mage-idle-sheet-v2-prompt.txt",
+    "notes": "Generated reference-resolution art, not a native 128px sprite. Retain alpha; four equal untrimmed cells, row-major order. The sole baseline measured at alpha >=128 is y=581 in every cell. Pivot uses the boundary immediately below that row. Not integrated into Bevy."
+  }
+}

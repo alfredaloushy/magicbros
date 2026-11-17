@@ -45,6 +45,30 @@ was imported temporarily for comparison and removed before saving exports.
 
 ## Review and limits
 
+### Generated idle sheet v2
+
+At the user's request, built-in imagegen produced a new four-frame idle sheet
+using `references/red-mage-reference-v1.png` as its sole visual reference.
+The [complete generation prompt](references/red-mage-idle-sheet-v2-prompt.txt)
+records the design, centering and planted-feet requirements. The resulting
+[transparent RGBA sheet](exports/characters/red-mage-idle-sheet-v2.png) is retained
+without resizing, recoloring, alpha replacement or other post-processing.
+
+Actual output dimensions are 1254 × 1254, with four equal 627 × 627 cells,
+ordered left-to-right then top-to-bottom. This differs from the requested
+1024 × 1024 size and is documented using the actual file dimensions.
+[Atlas metadata](exports/characters/red-mage-idle-sheet-v2.json) supplies exact
+rectangles, an `idle` tag, provisional 400ms timing and a shared feet pivot
+`(345, 582)`. All four sole baselines measure `y=581` at alpha ≥128; visible
+horizontal bounds differ by at most one pixel. The sheet was visually checked
+against the reference for facing, silhouette, costume, complete limbs and
+separation between cells. Soft alpha and faint near-transparent background
+pixels remain in the generated raster; this is not a validated native pixel
+grid. User review and any Pixelate cleanup are pending. It has not been loaded
+into Bevy, and this generation does not replace the editable Aseprite drafts.
+
+### Earlier 64 × 64 static study
+
 Inspected at 1× and 8× and compared side by side with the source concept.
 Palette analysis reports no off-palette colours. Validation reports no errors;
 partial outline warnings remain on overlapping body-part edges and gold trim.

@@ -5,6 +5,12 @@ prepared for user review. Animation, map artwork and engine integration are pend
 
 ## Current work
 
+New: [generated four-frame red mage idle sheet](exports/characters/red-mage-idle-sheet-v2.png)
+with [frame coordinates and timing](exports/characters/red-mage-idle-sheet-v2.json).
+This preserves the generated RGBA image at 1254 × 1254, arranged as four
+627 × 627 cells in reading order. It is reference-resolution animation art for
+manual processing/review, not an integrated native-resolution game sprite.
+
 The user supplies art direction and Codex draws in the live Aseprite window.
 The current direction is to follow our original concept art exclusively. The red
 mage is drawn from the lower-left character lineup in
