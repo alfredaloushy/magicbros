@@ -34,7 +34,7 @@ been removed. Art exploration proceeds alongside the pending network gate.
 | LAN verification | Real loopback combat tests pass; host/client GPU screenshots inspected |
 | Physical network/device gate | Two computers on Wi-Fi and Android/iOS playtests still pending |
 | Aseprite art workstream | Live editor connected; first wizard concept, rigged template and PNG/JSON handoff prepared |
-| Character style | Original concept sheet only; red-and-gold mage drawn in Aseprite, awaiting user review |
+| Character style | Original concept sheet only; red mage revised to a right-facing profile with realigned body proportions; awaiting user review |
 | Animation and map artwork | Pending first concept review and in-motion scale test |
 
 ## Development projects

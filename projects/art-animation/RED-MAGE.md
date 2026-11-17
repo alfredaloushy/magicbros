@@ -10,7 +10,11 @@ lower-left lineup (source region x=55, y=614, width=146, height=174).
 The sprite follows the oversized floppy red hat with a gold star and brim,
 brown fringe, small pale face, short red cape with gold edging, dark tunic,
 square gold belt buckle and brown boots. It uses the reference's compact
-proportions and resting pose. Decorative stitching and fine hat texture are
+proportions and a right-facing resting pose. The revised profile has one visible
+eye, a nose/chin contour, a narrower shoulder/chest silhouette and one dominant
+near arm. The head, collar and waist share a connected body axis; the rear arm
+is partly hidden, the cape attaches at the back shoulder, and both boots point
+right with staggered feet. Decorative stitching and fine hat texture are
 simplified to fit the pixel grid. No spell is included in the resting pose.
 
 - Source: [red-mage.aseprite](source/characters/red-mage.aseprite).
