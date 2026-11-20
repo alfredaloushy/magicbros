@@ -2,7 +2,22 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: custom deformable pixel rig style test
+## Current milestone: Godot cape-only fabric study
+
+At the user's request, Godot Editor 4.7.2 is installed and a separate
+[2D rigging project](projects/art-animation/godot-rigging/README.md) now uses our
+Aseprite textures. It has ten editable bones, normalized mesh weights and a
+cape-wave preview with play/reset/breeze controls. The user found that motion
+insufficient and requested that the cape be developed independently first.
+F5 now opens a cape-only native Jolt soft-body simulation, with a pinned collar,
+whole-surface wind response, stiffness controls and the original pixel texture.
+The character remains separate until cloth review. The character rig's rendered
+rest pose matches the source pixels exactly.
+The user rejected the earlier Blender cape stretching; that is not an approved
+animation. The Godot motion still needs visual review, and Bevy integration
+remains pending. Bevy continues to own gameplay; the Godot lab is for art authoring.
+
+### Earlier Blender study
 
 The user requested a custom pixel-style character after reviewing a downloaded
 3D rig. A [Blender pixel mesh study](projects/art-animation/PIXEL-RIG.md) now

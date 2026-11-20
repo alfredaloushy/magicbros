@@ -6,7 +6,16 @@ pixel cleanup, map artwork and engine integration remain pending.
 
 ## Current work
 
-New exploration: [custom Blender deformable pixel rig](PIXEL-RIG.md), built from our
+Current tool: [Godot character rig lab](godot-rigging/README.md), installed at the
+user's request. The original pixel textures now have an editable Skeleton2D rig
+and a cape-wave preview. The user rejected the initial bone-wave motion and
+requested a cape-only material study. Open with `./projects/art-animation/godot.sh`
+and press F5 for isolated native cloth simulation, with the original pixel texture,
+collar pins, wind and stretch-resistance controls. Integrating the cloth back
+with the character remains pending visual review. This is an authoring project alongside the Bevy game. The
+Blender stretching/wind trials below were rejected; the new motion awaits review.
+
+Earlier exploration: [custom Blender deformable pixel rig](PIXEL-RIG.md), built from our
 layered side-view v4 mage. Blender provides reusable body-part controls; Aseprite
 packages a 128px-frame idle preview. This preserves the pixel look and is an
 idle style test awaiting user review, before broad limb motion and Bevy import.

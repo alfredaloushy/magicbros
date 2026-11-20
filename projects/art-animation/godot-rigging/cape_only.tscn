@@ -1,0 +1,91 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://cape_preview.gd" id="1"]
+[ext_resource type="PackedScene" path="res://cape_world.tscn" id="2"]
+[ext_resource type="Shader" path="res://pixel_palette.gdshader" id="3"]
+
+[sub_resource type="ShaderMaterial" id="PixelPalette"]
+shader = ExtResource("3")
+
+[node name="CapeOnly" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+process_mode = 3
+script = ExtResource("1")
+
+[node name="PixelView" type="SubViewportContainer" parent="."]
+offset_left = 16.0
+offset_top = 32.0
+offset_right = 592.0
+offset_bottom = 608.0
+texture_filter = 1
+stretch = true
+stretch_shrink = 8
+
+[node name="Canvas" type="SubViewport" parent="PixelView"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(72, 72)
+render_target_update_mode = 4
+disable_3d = true
+
+[node name="Physics" type="SubViewport" parent="PixelView/Canvas"]
+transparent_bg = true
+size = Vector2i(72, 72)
+render_target_update_mode = 4
+own_world_3d = true
+msaa_3d = 0
+
+[node name="CapeWorld" parent="PixelView/Canvas/Physics" instance=ExtResource("2")]
+
+[node name="Output" type="TextureRect" parent="PixelView/Canvas"]
+offset_right = 72.0
+offset_bottom = 72.0
+texture_filter = 1
+material = SubResource("PixelPalette")
+
+[node name="Controls" type="VBoxContainer" parent="."]
+offset_left = 620.0
+offset_top = 100.0
+offset_right = 930.0
+offset_bottom = 550.0
+theme_override_constants/separation = 15
+
+[node name="Title" type="Label" parent="Controls"]
+text = "Cape · fabric study"
+theme_override_font_sizes/font_size = 24
+
+[node name="WindLabel" type="Label" parent="Controls"]
+text = "Breeze"
+
+[node name="Wind" type="HSlider" parent="Controls"]
+max_value = 1.0
+step = 0.05
+value = 0.55
+
+[node name="StiffnessLabel" type="Label" parent="Controls"]
+text = "Stretch resistance"
+
+[node name="Stiffness" type="HSlider" parent="Controls"]
+min_value = 0.8
+max_value = 1.0
+step = 0.01
+value = 0.98
+
+[node name="Play" type="CheckButton" parent="Controls"]
+text = "Play fabric"
+button_pressed = true
+
+[node name="Reset" type="Button" parent="Controls"]
+text = "Reset cloth"
+
+[node name="Metrics" type="Label" parent="Controls"]
+text = "Shoulder pinned"
+
+[node name="Note" type="Label" parent="Controls"]
+text = "Original pixel texture\nWhole-surface cloth simulation"
+theme_override_colors/font_color = Color(0.65, 0.69, 0.75, 1)
