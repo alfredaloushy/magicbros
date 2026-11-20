@@ -40,3 +40,11 @@ func attachment_error_pixels() -> float:
 		var target: Vector3 = shoulder.to_global(pin_offsets[index])
 		error = maxf(error, point.distance_to(target) / 0.02)
 	return error
+
+func set_resting(enabled: bool) -> void:
+	var player: AnimationPlayer = get_node("AnimationPlayer")
+	if enabled:
+		player.play("resting")
+	else:
+		player.pause()
+		player.seek(0.0, true)

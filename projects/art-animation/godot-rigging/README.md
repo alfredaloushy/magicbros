@@ -19,7 +19,9 @@ From the repository root:
 ./projects/art-animation/godot.sh --play-cape  # run only the cape study
 ```
 
-Press **F5** in Godot for the character with its attached cape. **Play fabric** pauses/resumes,
+Press **F5** in Godot for the resting character with its attached cape.
+**Play animation** pauses/resumes the body and cloth together, **Resting idle**
+switches breathing on/off,
 **Breeze** changes wind, **Stretch resistance** changes stiffness, and
 **Reset character** restarts the simulation. **Open cape-only study** switches
 to the separate asset preview; **Back to character** returns. Use F5 for these controls; F6 runs
@@ -41,8 +43,16 @@ visual overlap. Placeholder torso/shin collision volumes were removed after
 they caused the cape to bunch up; the cape keeps the standalone asset's response.
 
 `character_preview.tscn` renders at native 128 × 128 and displays at 4× through
-the existing palette pass. Its camera shows the whole character. Static character
-layers retain their source pixels; movement/casting animations are separate work.
+the existing palette pass. Its camera shows the whole character. The original
+pixel textures, hard transparency and palette remain in use.
+
+The character's `AnimationPlayer` autoplays the editable **resting** animation:
+a 3.6-second loop with a quiet inhale, longer exhale and delayed one-pixel head
+rise. The torso expands vertically by at most 4% about the belt; the waist and
+both feet stay planted. The shoulder follows that chest motion, while the shared
+cape continues to simulate independently. Select `AnimationPlayer` and choose
+`resting` in Godot's Animation panel to adjust its tracks. `RESET` restores the
+original pose. Running/casting animations and separate hat deformation remain future work.
 
 ## Current cloth study
 
@@ -101,8 +111,10 @@ PNGs and `.import` settings in Git; exclude `.godot/`.
 
 Checks cover character weights/rest poses and 600 native cloth steps: motion in
 all three fabric regions, collar error below 0.001px and edge strain below 15%
-at default settings. A further 300-step moving-shoulder check verifies the shared
-cape reference and attachment error below 0.05px. These are regression limits, not artistic approval.
+at default settings. A further 900-step moving-shoulder check covers more than
+two breathing cycles: shared cape reference, attachment error below 0.05px,
+fixed boots/belt, one-pixel head travel, continuous loop motion, pause and
+breathing toggle. These are regression limits, not artistic approval.
 Editor startup and GPU-rendered character/cape previews were visually inspected.
 User interaction and animation acceptance remain separate checks.
 

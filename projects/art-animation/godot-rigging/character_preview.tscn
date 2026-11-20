@@ -55,7 +55,7 @@ offset_bottom = 550.0
 theme_override_constants/separation = 15
 
 [node name="Title" type="Label" parent="Controls"]
-text = "Red mage + cape"
+text = "Red mage — resting"
 theme_override_font_sizes/font_size = 24
 
 [node name="WindLabel" type="Label" parent="Controls"]
@@ -76,7 +76,11 @@ step = 0.01
 value = 0.98
 
 [node name="Play" type="CheckButton" parent="Controls"]
-text = "Play fabric"
+text = "Play animation"
+button_pressed = true
+
+[node name="Resting" type="CheckButton" parent="Controls"]
+text = "Resting idle"
 button_pressed = true
 
 [node name="Reset" type="Button" parent="Controls"]
@@ -89,5 +93,5 @@ text = "Open cape-only study"
 text = "Cape attached at shoulder"
 
 [node name="Note" type="Label" parent="Controls"]
-text = "Separate, reusable cape asset\nOriginal pixel character"
+text = "Gentle breathing · planted feet\nSeparate, reusable cape asset"
 theme_override_colors/font_color = Color(0.65, 0.69, 0.75, 1)

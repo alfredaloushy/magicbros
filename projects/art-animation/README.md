@@ -11,7 +11,9 @@ user's request. The original pixel character now instances the reusable cloth
 cape through a shoulder attachment. Broad placeholder body collisions were
 removed after they caused cloth crumpling.
 Open with `./projects/art-animation/godot.sh` and press F5 for the combined
-character preview, with wind, pause/reset and stretch-resistance controls.
+character preview, with a gentle resting/breathing loop, planted feet, wind,
+pause/reset and stretch-resistance controls. `Resting idle` switches breathing
+on/off; the head follows the chest with a slight delay and the cape follows the shoulder.
 `godot.sh --cape` opens the independent
 cape asset, and the preview has a cape-only study button. The combined result
 awaits visual review. This is an authoring project alongside the Bevy game. The

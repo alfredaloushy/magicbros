@@ -2,13 +2,16 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: character with reusable Godot cape
+## Current milestone: resting character with reusable Godot cape
 
 The user requested keeping the cape as a separate asset and attaching it to the
 character. `mage_with_cape.tscn` now instances the original `cape_world.tscn`, with
 a shoulder attachment and original pixel
 layers for the character. F5 opens `character_preview.tscn`; the cape-only study
-remains available for independent editing. Moving-shoulder attachment checks pass.
+remains available for independent editing. A 3.6-second editable `resting` loop
+now gives the torso gentle breathing about the belt and the head delayed motion,
+with planted feet. The shoulder follows the breath while the cape simulates freely.
+Moving-shoulder, breathing, loop continuity and shared pause checks pass.
 Combined presentation review and Bevy sprite integration remain pending.
 Placeholder body collision volumes were removed after the user reported cape
 crumpling; they changed the flat cloth's response and are not part of the asset.
@@ -20,9 +23,9 @@ At the user's request, Godot Editor 4.7.2 is installed and a separate
 Aseprite textures. It has ten editable bones, normalized mesh weights and a
 cape-wave preview with play/reset/breeze controls. The user found that motion
 insufficient and requested that the cape be developed independently first.
-F5 now opens a cape-only native Jolt soft-body simulation, with a pinned collar,
+That milestone introduced a cape-only native Jolt soft-body simulation, with a pinned collar,
 whole-surface wind response, stiffness controls and the original pixel texture.
-The character remains separate until cloth review. The character rig's rendered
+The independent asset remains available alongside the combined preview. The character rig's rendered
 rest pose matches the source pixels exactly.
 The user rejected the earlier Blender cape stretching; that is not an approved
 animation. The Godot motion still needs visual review, and Bevy integration

@@ -11,6 +11,7 @@ func _ready() -> void:
 	$Controls/Wind.value_changed.connect(func(value: float): character.cape.breeze = value)
 	$Controls/Stiffness.value_changed.connect(func(value: float): character.cloth.linear_stiffness = value)
 	$Controls/Play.toggled.connect(func(value: bool): get_tree().paused = not value)
+	$Controls/Resting.toggled.connect(func(value: bool): character.set_resting(value))
 	$Controls/Reset.pressed.connect(func():
 		get_tree().paused = false
 		get_tree().reload_current_scene())
