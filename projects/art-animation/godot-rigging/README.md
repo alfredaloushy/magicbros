@@ -13,18 +13,36 @@ From the repository root:
 
 ```sh
 ./projects/art-animation/install-godot.sh  # one-time setup on Linux x86_64
-./projects/art-animation/godot.sh          # open cape_world.tscn in the editor
-./projects/art-animation/godot.sh --play   # run the cape-only preview directly
+./projects/art-animation/godot.sh          # open mage_with_cape.tscn in the editor
+./projects/art-animation/godot.sh --play   # run the combined character preview
+./projects/art-animation/godot.sh --cape   # edit the reusable cape asset separately
+./projects/art-animation/godot.sh --play-cape  # run only the cape study
 ```
 
-Press **F5** in Godot for the cape-only preview. **Play fabric** pauses/resumes,
+Press **F5** in Godot for the character with its attached cape. **Play fabric** pauses/resumes,
 **Breeze** changes wind, **Stretch resistance** changes stiffness, and
-**Reset cloth** restarts the simulation. Use F5 for these controls; F6 runs
+**Reset character** restarts the simulation. **Open cape-only study** switches
+to the separate asset preview; **Back to character** returns. Use F5 for these controls; F6 runs
 only the selected scene.
 
 Select `CapeFabric` in `cape_world.tscn` to inspect the actual SoftBody3D mesh,
-material, pinned points, mass, stiffness and simulation precision. The character
-is absent at the user's request while the cloth is reviewed independently.
+material, pinned points, mass, stiffness and simulation precision. That asset
+and its physics controller remain independent of the character scene.
+
+## Attached character
+
+`mage_with_cape.tscn` instances `cape_world.tscn` and adds the original head,
+torso/arms and legs as unfiltered pixel layers. The cape is not copied into
+the character, so its mesh/material/cloth settings remain editable in one place.
+The collar's 55 pinned points follow `ShoulderAttachment`, synchronized at
+physics frequency so attachment also works during headless baking. Free fabric
+vertices remain under the cape's existing solver. The flat pixel layers provide
+visual overlap. Placeholder torso/shin collision volumes were removed after
+they caused the cape to bunch up; the cape keeps the standalone asset's response.
+
+`character_preview.tscn` renders at native 128 × 128 and displays at 4× through
+the existing palette pass. Its camera shows the whole character. Static character
+layers retain their source pixels; movement/casting animations are separate work.
 
 ## Current cloth study
 
@@ -42,10 +60,11 @@ The final 2D pass restores the source palette after Godot's 3D colour pipeline.
 Automatic 3D texture compression and mipmaps are disabled. A rendered native
 cape capture was checked: zero off-palette colours and no partial alpha.
 
-This is an isolated fabric experiment awaiting visual approval. The default
+This is a reusable fabric experiment. The default
 settings pass attachment/motion/stretch regression bounds; those checks do not
-establish that it looks natural. Body collisions, final looping, attaching the
-cape back to the character and baking frames for Bevy remain pending.
+establish that it looks natural. The user requested keeping it as a separate
+asset and attaching it to the character. The combined presentation still needs
+visual review; final looping and baking frames for Bevy remain pending.
 
 ## Preserved character rig
 
@@ -70,17 +89,20 @@ current Bevy renderer; final PNG/timing export is a future handoff. The earlier
 ```sh
 ./projects/art-animation/godot.sh --build-rig
 ./projects/art-animation/godot.sh --build-cape
+./projects/art-animation/godot.sh --build-character
 ./projects/art-animation/godot.sh --check
 ```
 
 The builders replace their generated `.tscn` files, so save manual rig edits
 before rebuilding. The cape builder derives its mesh and UVs from the unchanged
-cape polygon. Normal editing does not need a rebuild. Keep `.tscn`, `.gd`, `.uid`,
+cape polygon. The character builder saves the composition and its reference to
+the shared cape. Normal editing does not need a rebuild. Keep `.tscn`, `.gd`, `.uid`,
 PNGs and `.import` settings in Git; exclude `.godot/`.
 
 Checks cover character weights/rest poses and 600 native cloth steps: motion in
 all three fabric regions, collar error below 0.001px and edge strain below 15%
-at default settings. These are regression limits, not artistic approval.
+at default settings. A further 300-step moving-shoulder check verifies the shared
+cape reference and attachment error below 0.05px. These are regression limits, not artistic approval.
 Editor startup and GPU-rendered character/cape previews were visually inspected.
 User interaction and animation acceptance remain separate checks.
 

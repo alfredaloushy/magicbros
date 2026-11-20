@@ -7,12 +7,14 @@ pixel cleanup, map artwork and engine integration remain pending.
 ## Current work
 
 Current tool: [Godot character rig lab](godot-rigging/README.md), installed at the
-user's request. The original pixel textures now have an editable Skeleton2D rig
-and a cape-wave preview. The user rejected the initial bone-wave motion and
-requested a cape-only material study. Open with `./projects/art-animation/godot.sh`
-and press F5 for isolated native cloth simulation, with the original pixel texture,
-collar pins, wind and stretch-resistance controls. Integrating the cloth back
-with the character remains pending visual review. This is an authoring project alongside the Bevy game. The
+user's request. The original pixel character now instances the reusable cloth
+cape through a shoulder attachment. Broad placeholder body collisions were
+removed after they caused cloth crumpling.
+Open with `./projects/art-animation/godot.sh` and press F5 for the combined
+character preview, with wind, pause/reset and stretch-resistance controls.
+`godot.sh --cape` opens the independent
+cape asset, and the preview has a cape-only study button. The combined result
+awaits visual review. This is an authoring project alongside the Bevy game. The
 Blender stretching/wind trials below were rejected; the new motion awaits review.
 
 Earlier exploration: [custom Blender deformable pixel rig](PIXEL-RIG.md), built from our

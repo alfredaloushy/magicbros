@@ -14,6 +14,9 @@ func _ready() -> void:
 	$Controls/Reset.pressed.connect(func():
 		get_tree().paused = false
 		get_tree().reload_current_scene())
+	$Controls/Character.pressed.connect(func():
+		get_tree().paused = false
+		get_tree().change_scene_to_file("res://character_preview.tscn"))
 
 func _process(_delta: float) -> void:
 	frame_count += 1

@@ -1,0 +1,42 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://character_attachment.gd" id="1_ithfy"]
+[ext_resource type="Texture2D" path="res://textures/legs.png" id="2_t2h5i"]
+[ext_resource type="Texture2D" path="res://textures/body.png" id="3_g3cud"]
+[ext_resource type="Texture2D" path="res://textures/head.png" id="4_ll1ks"]
+[ext_resource type="PackedScene" path="res://cape_world.tscn" id="5_u1ygn"]
+
+[node name="MageWithCape" type="Node3D" unique_id=901912089]
+script = ExtResource("1_ithfy")
+
+[node name="Legs" type="Sprite3D" parent="." unique_id=283570065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.64, -0.035)
+pixel_size = 0.02
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("2_t2h5i")
+
+[node name="Body" type="Sprite3D" parent="." unique_id=1290787360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.64, 0.045)
+pixel_size = 0.02
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("3_g3cud")
+
+[node name="Head" type="Sprite3D" parent="." unique_id=1353098074]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.64, 0.06)
+pixel_size = 0.02
+alpha_cut = 1
+texture_filter = 0
+texture = ExtResource("4_ll1ks")
+
+[node name="ShoulderAttachment" type="Marker3D" parent="." unique_id=1478826775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28, 0.34, 0)
+
+[node name="Cape" parent="." unique_id=1821523471 instance=ExtResource("5_u1ygn")]
+
+[node name="PixelCamera" type="Camera3D" parent="." unique_id=889992602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.32, 0.64, 3)
+projection = 1
+current = true
+size = 2.56

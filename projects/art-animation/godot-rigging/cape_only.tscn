@@ -86,6 +86,9 @@ text = "Reset cloth"
 [node name="Metrics" type="Label" parent="Controls"]
 text = "Shoulder pinned"
 
+[node name="Character" type="Button" parent="Controls"]
+text = "Back to character"
+
 [node name="Note" type="Label" parent="Controls"]
 text = "Original pixel texture\nWhole-surface cloth simulation"
 theme_override_colors/font_color = Color(0.65, 0.69, 0.75, 1)

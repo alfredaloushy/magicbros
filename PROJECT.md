@@ -2,7 +2,18 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: Godot cape-only fabric study
+## Current milestone: character with reusable Godot cape
+
+The user requested keeping the cape as a separate asset and attaching it to the
+character. `mage_with_cape.tscn` now instances the original `cape_world.tscn`, with
+a shoulder attachment and original pixel
+layers for the character. F5 opens `character_preview.tscn`; the cape-only study
+remains available for independent editing. Moving-shoulder attachment checks pass.
+Combined presentation review and Bevy sprite integration remain pending.
+Placeholder body collision volumes were removed after the user reported cape
+crumpling; they changed the flat cloth's response and are not part of the asset.
+
+### Cape-only milestone
 
 At the user's request, Godot Editor 4.7.2 is installed and a separate
 [2D rigging project](projects/art-animation/godot-rigging/README.md) now uses our
