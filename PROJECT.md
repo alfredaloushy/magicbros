@@ -2,7 +2,17 @@
 
 This file is updated as work progresses. Open it alongside the conversation to follow the build.
 
-## Current milestone: six-frame red mage idle with cloth follow-through
+## Current milestone: custom deformable pixel rig style test
+
+The user requested a custom pixel-style character after reviewing a downloaded
+3D rig. A [Blender pixel mesh study](projects/art-animation/PIXEL-RIG.md) now
+uses the existing layered v4 artwork, with twelve controls and a one-second idle.
+The user's cloth feedback replaces separate cape/hat tiles and height-only
+motion with continuous weighted bending and chest-expansion shape keys.
+The neutral render matches the source pixels exactly; hard alpha, the original
+27 opaque colours, fixed boots, frame timing and atlas handoff pass validation.
+User visual review, hidden-joint cleanup, full movement animation and Bevy import
+remain pending. Earlier art milestones below are retained as historical context.
 
 Two-computer Wi-Fi testing is paused at the user's request until a second
 computer is available. The host is stopped and its temporary firewall rule has

@@ -6,6 +6,13 @@ pixel cleanup, map artwork and engine integration remain pending.
 
 ## Current work
 
+New exploration: [custom Blender deformable pixel rig](PIXEL-RIG.md), built from our
+layered side-view v4 mage. Blender provides reusable body-part controls; Aseprite
+packages a 128px-frame idle preview. This preserves the pixel look and is an
+idle style test awaiting user review, before broad limb motion and Bevy import.
+The cape and hat bend as continuous weighted meshes; chest shape keys provide
+breathing instead of shifting the whole sprite up and down.
+
 Current: [six-frame idle sprite sheet](exports/characters/red-mage-idle-sheet-v3.png),
 a 1536 × 1024 transparent PNG with six equal 512 × 512 cells, clearer cape
 flow and delayed hat-tip movement. The [editable Aseprite animation](source/characters/red-mage-idle-sheet-v3.aseprite)
